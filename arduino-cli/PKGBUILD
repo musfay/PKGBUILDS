@@ -28,9 +28,7 @@ build(){
   export GOFLAGS='-buildmode=pie -trimpath -mod=readonly -modcacherw'
 
   go build \
-        -ldflags "-linkmode=external \
-		-X github.com/arduino/arduino-cli/version.versionString=$pkgver-arch \
-		-X github.com/arduino/arduino-cli/version.commit=$(git rev-parse HEAD)" \
+        -ldflags "-linkmode=external -X github.com/arduino/arduino-cli/version.versionString=$pkgver-arch -X github.com/arduino/arduino-cli/version.commit=$(git rev-parse HEAD)" \
         -v .
 }
 
