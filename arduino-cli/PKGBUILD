@@ -20,7 +20,7 @@ sha512sums=('SKIP'
 build(){
   cd $pkgname
   
-  patch -p1 < change-test-dirs.patch
+  patch -p1 < ../change-test-dirs.patch
   export CGO_CPPFLAGS="$CPPFLAGS"
   export CGO_CFLAGS="$CFLAGS"
   export CGO_CXXFLAGS="$CXXFLAGS"
@@ -35,13 +35,13 @@ build(){
 }
 
 package() {
-  ./$pkgname completion bash > $pkgname.bash
-  ./$pkgname completion zsh  > $pkgname.zsh
+  $pkgname/$pkgname completion bash > $pkgname.bash
+  $pkgname/$pkgname completion zsh  > $pkgname.zsh
   
   install -Dm 755 $pkgname/$pkgname       "$pkgdir"/usr/share/arduino/$pkgname
-  # linked binary cant find local platform, using script instead
+  # symlinked binary cant find local platform, using script instead
   install -Dm 755 $srcdir/$pkgname.sh     "$pkgdir"/usr/bin/$pkgname
-  install -Dm 755 $pkgname/$pkgname.bash  "$pkgdir"/usr/share/bash-completions/$pkgname
-  install -Dm 755 $pkgname/$pkgname.zsh   "$pkgdir"/usr/share/zsh/site-functions/_$pkgname
+  install -Dm 644 $pkgname.bash           "$pkgdir"/usr/share/bash-completions/$pkgname
+  install -Dm 644 $pkgname.zsh            "$pkgdir"/usr/share/zsh/site-functions/_$pkgname
 }
 
