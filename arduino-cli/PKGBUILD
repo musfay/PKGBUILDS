@@ -41,5 +41,6 @@ package() {
   install -Dm 755 $srcdir/$pkgname.sh     "$pkgdir"/usr/bin/$pkgname
   install -Dm 644 $pkgname.bash           "$pkgdir"/usr/share/bash-completion/completions/$pkgname
   install -Dm 644 $pkgname.zsh            "$pkgdir"/usr/share/zsh/site-functions/_$pkgname
+  install -Dm 644 $pkgname/LICENSE.txt    "$pkgdir"/usr/share/licenses/$pkgname/GPL-3.0
 }
 
